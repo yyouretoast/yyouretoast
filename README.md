@@ -1,5 +1,4 @@
 # Hey, I'm Yassin 👋
-
 CS student in Cairo building AI systems that work outside notebooks — from training to deployment.
 
 Currently focused on **real-time computer vision** and **MLOps**.
@@ -26,7 +25,7 @@ Currently focused on **real-time computer vision** and **MLOps**.
 - Deployed as interactive Streamlit web app
 - `EfficientNetB0` `RetinaFace` `TensorFlow` `Streamlit` `FaceForensics++`
 
-**[🔴 Live Demo]((https://huggingface.co/spaces/yyouretoast/deepfake-detector))**
+**[🔴 Live Demo](https://huggingface.co/spaces/yyouretoast/deepfake-detector)**
 
 ---
 
@@ -45,5 +44,5 @@ Currently focused on **real-time computer vision** and **MLOps**.
 ---
 
 ## 📬 Let's connect
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](your-linkedin-url)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:your-email)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yassinyasser/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:yyasso2005@gmail.com)
