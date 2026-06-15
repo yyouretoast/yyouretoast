@@ -6,22 +6,14 @@ I'm currently working as an **AI Systems Engineer**, building end-to-end LLM-age
 
 ---
 
-## 🔭 Currently Building
-
-Diving into **agentic AI** — building a LangGraph-based ReAct agent with RAG/vector DB retrieval to round out my GenAI toolkit.
-
----
-
 ## 🛠️ Tech Stack
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
 ![GCP](https://img.shields.io/badge/GCP-4285F4?style=flat&logo=google-cloud&logoColor=white)
 ![MediaPipe](https://img.shields.io/badge/MediaPipe-0097A7?style=flat&logo=google&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat&logo=langchain&logoColor=white)
 
 ---
 
@@ -35,13 +27,6 @@ Diving into **agentic AI** — building a LangGraph-based ReAct agent with RAG/v
 - `EfficientNetB0` `RetinaFace` `TensorFlow` `Grad-CAM` `FaceForensics++`
 
 **[🔴 Live Demo](https://huggingface.co/spaces/yyouretoast/deepfake-detector)**
-
----
-
-### 🤟 [Real-Time Sign Language Recognition](https://github.com/yyouretoast/real-time-sign-language-recognition)
-> Real-time ASL recognition from webcam input using hand-landmark tracking and deep learning
-
-- `MediaPipe` `TensorFlow` `OpenCV`
 
 ---
 
