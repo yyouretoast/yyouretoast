@@ -26,8 +26,7 @@ Fuses ConvNeXt-Small spatial embeddings with SRM/Bayar-Stamm 2D Real FFT spectra
 
 ### FreightIQ
 [Repo](https://github.com/yyouretoast/freightiq) · [Demo](https://huggingface.co/spaces/yyouretoast/freightiq)
-
-LangGraph agent routing freight carrier queries between exact SQL, hybrid retrieval (SQLite FTS5 + ChromaDB via Reciprocal Rank Fusion, cross-encoder reranked), and live FMCSA safety verification. Hybrid reranking lifts **Recall@1 0.30→0.70, Recall@5 0.667→0.867, MRR 0.429→0.764** over dense-only retrieval on a 60-query benchmark — though plain SQL still wins on structured queries.
+LangGraph agent routing freight inquiries between deterministic SQLite (<1 ms), hybrid retrieval (FTS5 BM25 + ChromaDB fused via RRF k=60, neural Cross-Encoder re-ranked), and live FMCSA safety verification. Two-stage neural re-ranking lifts **Hit@1 0.317→0.717 (+126%), Hit@5 0.683→0.883, and MRR 0.445→0.781** over dense retrieval on a 60-query benchmark. Turn-scoped loop breaker and read-only URI enforcement verified across a 20-scenario trajectory evaluation suite.
 
 ---
 
