@@ -14,10 +14,10 @@ Specializing in spatial-spectral deep learning systems and deterministic agent o
 **Key Results**: 0.8994 Video ROC-AUC • 18.54% EER • 0.8651 Zero-Shot Google DFD AUC • 14.08 ms Latency (RTX 4060)
 
 * **Dual-Stream Architecture**: Couples an ImageNet-pretrained ConvNeXt-Small spatial stream with a 20-channel ResSE spectral tower fed by 9 Spatial Rich Model (SRM) filters, learnable Bayar-Stamm constrained convolution, and 2D Real FFT decomposition.
-* **Leakage-Free Partitioning**: Enforced zero source and target actor overlap across train, validation, and test splits by constructing a bipartite actor graph over 99,101 crops (2,248 source videos) and isolating connected components.
+* **Leakage-Free Partitioning**: Enforced zero source and target actor overlap across train, validation, and test splits by constructing a bipartite actor graph over 99,101 crops (8,258 source videos) and isolating connected components.
 * **Artifact Suppression**: Suppressed high-frequency FFT edge leakage by >40 dB by applying a 2D separable Hann cosine tapering window to facial crops aligned via OpenCV YuNet and 5-point LMEDS similarity transforms.
 * **Numerical Stability**: Prevented FP16 mixed-precision crashes in Bayar-Stamm layers using signed-sum epsilon flooring; suppressed gradient divergence at spectral nulls via sub-epsilon phase masking.
-* **Sequence Modeling**: Processed feature velocity deltas through a 2-layer Bi-GRU with dual-path self-attention, lifting video ROC-AUC to 0.8994 (from a 0.8656 frame-level AUC) and cutting EER to 18.54% across 26,981 held-out test crops (outperforming uniform frame averaging).
+* **Sequence Modeling**: Processed feature velocity deltas through a 2-layer Bi-GRU with dual-path self-attention, lifting video ROC-AUC to 0.8994 (from a 0.8656 frame-level AUC) and cutting EER to 18.54% across 26,981 held-out test crops in 2,248 video sequences (outperforming uniform frame averaging).
 * **Generalization & Calibration**: Reached 0.8651 zero-shot AUC on Google DFD and 0.9514 4-fold LOMO macro AUC; reduced Expected Calibration Error by 49.4% (0.1965 → 0.0994) via post-hoc affine Platt scaling fitted on validation split logits.
 * **Benchmarks & Deployment**: Profiled end-to-end latency on an RTX 4060 GPU at 14.08 ms (71.0 FPS). Backed by a 147-test pytest suite under GitHub Actions CI, 4 SHA-256 verified checkpoints, a batch CLI, a Streamlit demo, and a 10-page CVPR/IEEE-format research manuscript with automated data parity verification.
 
