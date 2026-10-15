@@ -1,49 +1,46 @@
 # Yassin Yasser
 
-**Applied AI & Machine Learning Engineer** | Cairo, Egypt  
-Specializing in spatial-spectral deep learning systems and deterministic agent orchestration.
+**Applied AI Engineer | Agent systems with evals & deep learning for media forensics**  
+Cairo, Egypt · Open to AI/ML Engineering & Research roles (Remote, UAE / Relocation) · Graduating July 2027
 
-[LinkedIn](https://linkedin.com/in/yassinyasser) / [Hugging Face](https://huggingface.co/yyouretoast) / [Email](mailto:yyasso2005@gmail.com)
-
----
-
-### Featured Systems
-
-#### [Dual-Stream Deepfake Forensics Engine](https://github.com/yyouretoast/deepfake-detection)
-`PyTorch` • `ConvNeXt` • `2D FFT` • `Bi-GRU` • `OpenCV` • `Streamlit`  
-**Key Results**: 0.8994 Video ROC-AUC • 18.54% EER • 0.8651 Zero-Shot Google DFD AUC • 14.08 ms Latency (RTX 4060)
-
-* **Dual-Stream Architecture**: Couples an ImageNet-pretrained ConvNeXt-Small spatial stream with a 20-channel ResSE spectral tower fed by 9 Spatial Rich Model (SRM) filters, learnable Bayar-Stamm constrained convolution, and 2D Real FFT decomposition.
-* **Leakage-Free Partitioning**: Enforced zero source and target actor overlap across train, validation, and test splits by constructing a bipartite actor graph over 99,101 crops (8,258 source videos) and isolating connected components.
-* **Artifact Suppression**: Suppressed high-frequency FFT edge leakage by >40 dB by applying a 2D separable Hann cosine tapering window to facial crops aligned via OpenCV YuNet and 5-point LMEDS similarity transforms.
-* **Numerical Stability**: Prevented FP16 mixed-precision crashes in Bayar-Stamm layers using signed-sum epsilon flooring; suppressed gradient divergence at spectral nulls via sub-epsilon phase masking.
-* **Sequence Modeling**: Processed feature velocity deltas through a 2-layer Bi-GRU with dual-path self-attention, lifting video ROC-AUC to 0.8994 (from a 0.8656 frame-level AUC) and cutting EER to 18.54% across 26,981 held-out test crops in 2,248 video sequences (outperforming uniform frame averaging).
-* **Generalization & Calibration**: Reached 0.8651 zero-shot AUC on Google DFD and 0.9514 4-fold LOMO macro AUC; reduced Expected Calibration Error by 49.4% (0.1965 → 0.0994) via post-hoc affine Platt scaling fitted on validation split logits.
-* **Benchmarks & Deployment**: Profiled end-to-end latency on an RTX 4060 GPU at 14.08 ms (71.0 FPS). Backed by a 147-test pytest suite under GitHub Actions CI, 4 SHA-256 verified checkpoints, a batch CLI, a Streamlit demo, and a 10-page CVPR/IEEE-format research manuscript with automated data parity verification.
-
-#### [FreightIQ — Carrier Intelligence Agent](https://github.com/yyouretoast/freightiq)
-`LangGraph` • `SQLite FTS5` • `ChromaDB` • `Cross-Encoder` • `Streamlit`  
-**Key Results**: +126% Hit@1 Lift • +75% MRR Lift • 0.31 ms SQL Lookup • 20/20 Security & Trajectory Tests
-
-* **ReAct Agent Routing**: Enforces single-turn sequential tool execution (`parallel_tool_calls=False`) in LangGraph to prevent inter-tool race conditions and argument hallucinations during multi-stage carrier dispatch queries.
-* **Sibling Model Failover**: Built thread-safe dynamic failover between Qwen 27B models on Groq with an automated lock, 5-minute self-healing recovery cooldown, and fallbacks to OpenAI and local Ollama instances.
-* **Loop & Memory Guardrails**: Implemented a turn-scoped loop breaker detecting cyclic tool calls and an 8-message turn-aligned sliding context window.
-* **Two-Stage Hybrid Search**: Fuses SQLite FTS5 BM25 with ChromaDB dense embeddings via Reciprocal Rank Fusion ($k=60$) and Cross-Encoder re-ranking, boosting Hit@1 by 126% (0.317 → 0.717) and MRR by 75% (0.445 → 0.781) over dense-only vector search across a 60-query benchmark on 500 synthetic carrier profiles.
-* **Read-Only SQLite Engine**: Enforces filesystem-level read-only access (`mode=ro`), AST query parsing, and automated constraint relaxation on zero-row returns while excluding safety ratings and hazmat codes from relaxation. Resolves deterministic lookups in 0.31 ms.
-* **Compliance & Stress Testing**: Integrates live federal FMCSA QCMobile REST API safety gating, an NMFC freight density calculator, and Tavily market intelligence. Passed 100% of 20 self-authored integration scenario tests and executed lock-free reads across 15 concurrent threads on SQLite WAL.
+[LinkedIn](https://linkedin.com/in/yassinyasser) · [Hugging Face](https://huggingface.co/yyouretoast) · [Email](mailto:yyasso2005@gmail.com)
 
 ---
 
-### Ecosystem & Open Source
+### Projects
 
-* **[huggingface/transformers](https://github.com/huggingface/transformers)**: Patched model architecture taxonomy misclassifying SmolLM3 under multimodal architectures in official documentation (`_toctree.yml`). Reviewed and merged into `main`.
-* **[Hugging Face Hub](https://huggingface.co/yyouretoast)**: Published model weights, evaluation checkpoints, and interactive deployment Spaces for deepfake forensics and carrier intelligence.
+#### [Dual-Stream Deepfake Forensics Engine](https://github.com/yyouretoast/deepfake-detection) · [Demo](https://huggingface.co/spaces/yyouretoast/deepfake-detector)
+`PyTorch` `ConvNeXt` `2D FFT` `Bi-GRU` `OpenCV` `Streamlit`
+
+**Test set:** 2,250 videos / 26,981 crops (FF++, Celeb-DF v2, and 1,300 unseen Google DFD videos)  
+**Results:** 0.8994 video ROC-AUC (18.54% EER) vs 0.8962 (19.43%) for uniform frame averaging · 0.8651 frame-level AUC on zero-shot Google DFD · 14.08 ms/crop full pipeline at batch 32 (RTX 4060)
+
+* Pairs a ConvNeXt-Small spatial stream with a frequency stream (SRM filters, Bayar-Stamm convolution, 2D FFT), fused with SNR-adaptive gating.
+* Identity-disjoint splits: pair-disjoint FF++, actor-graph-partitioned Celeb-DF v2. Google DFD is never trained on and is used only as a zero-shot test set.
+* Leave-one-manipulation-out on FF++ (4 folds, balanced cohorts): 0.9514 macro AUC. Platt scaling fit on validation only cuts calibration error 49.4% (0.1965 → 0.0994).
+* Prevented FP16 division-by-zero crashes in Bayar layers and suppressed gradient divergence at spectral nulls. 147 tests (2 skipped) in CI. Paper: working draft, in preparation.
+
+#### [FreightIQ: Carrier Intelligence Agent](https://github.com/yyouretoast/freightiq) · [Demo](https://huggingface.co/spaces/yyouretoast/freightiq)
+`LangGraph` `SQLite FTS5` `ChromaDB` `Cross-Encoder` `Streamlit`
+
+**Results (60 queries, 500 synthetic carrier profiles, hybrid + re-rank vs dense-only):** Hit@1 0.317 → 0.717 · MRR 0.446 → 0.781
+
+* LangGraph ReAct agent with sequential tool calls to avoid race conditions. Failover between Qwen 27B models on Groq, with OpenAI and Ollama fallbacks.
+* Hybrid retrieval: SQLite FTS5 BM25 plus ChromaDB embeddings fused with RRF, then cross-encoder re-ranking.
+* Read-only SQLite lookups with constraint relaxation (safety ratings and hazmat codes are never relaxed). Live FMCSA API compliance checks.
+* Loop breaker and 8-message context window. 20 self-written trajectory tests covering prompt injection and SQL mutation attempts.
 
 ---
 
-### Technical Stack
+### Open Source
 
-* **Frameworks & Core Tools**: PyTorch, torchvision, OpenCV, Scikit-Learn, SciPy, LangGraph, LangChain, Streamlit
-* **Retrieval & Databases**: SQLite (FTS5, WAL Mode), ChromaDB, Cross-Encoders, BM25, Reciprocal Rank Fusion (RRF)
-* **Data Engineering & Scripting**: Python, SQL, Bash, BeautifulSoup, Selenium, Pandas, NetworkX, REST APIs
-* **Infrastructure & Platforms**: Git, Git LFS, GitHub Actions CI/CD, Google Cloud Platform (GCP), Google Apigee X, Postman, Groq, Ollama, Docker
+* **[huggingface/transformers](https://github.com/huggingface/transformers/pull/46770)**: Docs fix. Moved SmolLM3 from Multimodal to Text models in `_toctree.yml`. Reviewed and approved by a maintainer.
+
+### Experience
+
+* **AusShop**, Applied AI Engineer (Mar 2026 – present): Built a multi-timezone outreach dispatch engine and Python scraping pipelines syncing 130 Goodwill HQ contacts into HubSpot.
+* **Cloudypedia**, API Engineer Intern (Jul – Sep 2025): Deployed 10+ REST/SOAP API proxies on GCP Apigee X for enterprise clients and added Postman/Newman regression suites to CI/CD.
+
+### Stack
+
+PyTorch · OpenCV · LangGraph · LangChain · LangSmith · SQLite (FTS5, WAL) · ChromaDB · Pandas · Selenium · GitHub Actions · GCP · Apigee X · Groq · Ollama
