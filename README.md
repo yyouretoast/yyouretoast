@@ -18,7 +18,6 @@ Cairo, Egypt · Open to AI/ML Engineering & Research roles (Remote, UAE / Reloca
 * Pairs a ConvNeXt-Small spatial stream with a frequency stream (SRM filters, Bayar-Stamm convolution, 2D FFT), fused with SNR-adaptive gating.
 * Identity-disjoint splits: pair-disjoint FF++, actor-graph-partitioned Celeb-DF v2. Google DFD is never trained on and is used only as a zero-shot test set.
 * Leave-one-manipulation-out on FF++ (4 folds, balanced cohorts): 0.9514 macro AUC. Platt scaling fit on validation only cuts calibration error 49.4% (0.1965 → 0.0994).
-* Prevented FP16 division-by-zero crashes in Bayar layers and suppressed gradient divergence at spectral nulls. 147 tests (2 skipped) in CI. Paper: working draft, in preparation.
 
 #### [FreightIQ: Carrier Intelligence Agent](https://github.com/yyouretoast/freightiq) · [Demo](https://huggingface.co/spaces/yyouretoast/freightiq)
 `LangGraph` `SQLite FTS5` `ChromaDB` `Cross-Encoder` `Streamlit`
